@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>FORM </title> 
+   <style> 
+   body{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: black;
+    color: white;
+   
+   }
+   .header{
+    background-color: rgba(0, 255, 94, 0.484);
+    color: rgb(255, 0, 0);
+    padding: 1px;
+    text-align: center;
+   }
+   
+    
+   
+
+   </style>
+</head>
+<body>
+    <div class ='header'>
+        
+     <H1>FORM</H1>
+
+    </div><br>
+    <div class ='main'>
+        <form action ='sumbit.php' method='post'>
+            <label for ="username">USERNAME</label>
+            <INPUT type ='text' name="text"><Br><br>
+            <label for ="password">PASSWORD</label>
+            <INPUT type ='password' name="password"><Br><br>
+                <lable for="email">EMAIL</lable>
+                <input type="email" name="email" ><br><br>
+                <label for="ENTER Your Hobbies">Select your Hobbies</label><br>
+                <input type="checkbox" name="hobbies" id="hobbies1" value="singing">
+                <label for="hobbies1">SINGING</label><br>
+                <input type="checkbox" name="hobbies" id="hobbies2" value="dancing">
+                <label for="hobbies2">DANCING</label><br>
+                <input type="checkbox" name="hobbies" id="hobbies4" value="reading">
+                <label for="hobbies3">READING</label><br>
+                <input type="checkbox" name="hobbies" id="hobbies4" value="playing">
+                <label for="hobbies4">PLAYING</label><br><br>
+                <label for="Select your favorite language">Select your favorite language</label><br>
+                <input type="radio" name="fav lang" id="lang1" value="python">
+                <label for="lang1">PYTHON</label><br>
+                <input type="radio" name="fav lang" id="lang2" value="javascript">
+                <label for="lang2">JAVASCRIPT</label><br>
+                <input type="radio" name="fav lang" id="lang3" value="java">
+                <label for="lang3">JAVA</label><br>
+                <input type="radio" name="fav lang" id="lang4" value="c">
+                <label for="lang4">C</label><br>
+
+            <input type="submit" value="Submit">
+            
+        </form>
+    </div>
+</body>
+</html>
