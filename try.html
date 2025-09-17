@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lappu GANG - Innovative Solutions for Tourism Industry</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --secondary: #34a853;
+            --accent: #fbbc04;
+            --light: #f8f9fa;
+            --dark: #202124;
+            --text: #5f6368;
+            --background: #ffffff;
+            --muted: #dadce0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--background);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 100px;
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.1) 0%, rgba(52, 168, 83, 0.1) 100%);
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: var(--text);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #0d5bbb;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #2c8845;
+        }
+        
+        /* Solutions Section */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-top: 80px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        .solutions {
+            padding: 80px 0;
+            background-color: var(--background);
+        }
+        
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .solution-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .solution-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .solution-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .solution-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .solution-card:hover .solution-img img {
+            transform: scale(1.1);
+        }
+        
+        .solution-content {
+            padding: 25px;
+        }
+        
+        .solution-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .solution-content p {
+            margin-bottom: 20px;
+        }
+        
+        /* Trends Section */
+        .trends {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .trends-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .trend-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            width: 100%;
+            max-width: 350px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .trend-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .trend-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .trend-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+        }
+        
+        .cta .btn {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        .cta .btn:hover {
+            background-color: var(--light);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a {
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--muted);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--background);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: left 0.3s;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">SIH <span>PAGLU</span></div>
+                <ul class="nav-links">
+                    <li><a href="#solutions">Solutions</a></li>
+                    <li><a href="#trends">Trends</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Revolutionizing Tourism with Innovative Solutions</h1>
+            <p>Discover cutting-edge strategies and technologies to boost your tourism business, attract more visitors, and create unforgettable experiences.</p>
+            <a href="#solutions" class="btn">Explore Solutions</a>
+            <a href="#contact" class="btn btn-secondary">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="solutions">
+        <div class="container">
+            <div class="section-title">
+                <h2>Innovative Tourism Solutions</h2>
+                <p>Explore our comprehensive solutions designed to address current challenges in the tourism industry</p>
+            </div>
+            
+            <div class="solutions-grid">
+                <!-- Solution 1 -->
+                <div class="solution-card">
+                    <div class="solution-img">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d4f0ec66-aa86-4185-8a49-1a6c66e1128a.png" alt="Dynamic pricing interface showing hotel room auctions with competitive bids">
+                    </div>
+                    <div class="solution-content">
+                        <h3>Dynamic Pricing & Auctions</h3>
+                        <p>Maximize occupancy with our smart auction platform that allows competitive bidding for hotel rooms and travel packages.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Solution 2 -->
+                <div class="solution-card">
+                    <div class="solution-img">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/22367960-345c-4d81-abe2-f93e6eb7ac76.png" alt="Virtual reality headset displaying immersive hotel room tour with 360-degree view">
+                    </div>
+                    <div class="solution-content">
+                        <h3>Virtual Tours & Experiences</h3>
+                        <p>Offer immersive virtual experiences that allow travelers to explore destinations before booking.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Solution 3 -->
+                <div class="solution-card">
+                    <div class="solution-img">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/69e0ec16-8f5a-4c9a-9271-7e5793c52cff.png" alt="AI chatbot interface providing personalized travel recommendations to a user">
+                    </div>
+                    <div class="solution-content">
+                        <h3>AI-Powered Travel Assistants</h3>
+                        <p>Implement intelligent chatbots that provide 24/7 travel information, recommendations, and booking assistance.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Solution 4 -->
+                <div class="solution-card">
+                    <div class="solution-img">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/61877a84-df93-4953-a3df-71d990d9b671.png" alt="Gamified travel app showing reward tiers and achievement badges for travelers">
+                    </div>
+                    <div class="solution-content">
+                        <h3>Gamified Rewards System</h3>
+                        <p>Increase customer loyalty with engaging reward programs featuring tiered benefits and exclusive experiences.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Solution 5 -->
+                <div class="solution-card">
+                    <div class="solution-img">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/09723eae-6c6e-4d50-98d1-ba98fa706d58.png" alt="Safety alert system displaying real-time weather warnings and travel advisories on a map">
+                    </div>
+                    <div class="solution-content">
+                        <h3>Real-Time Safety Alerts</h3>
+                        <p>Keep travelers safe with integrated weather and disaster alert systems that provide timely warnings.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <!-- Solution 6 -->
+                <div class="solution-card">
+                    <div class="solution-img">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/17d083dc-b3d6-4ec0-8afb-16ec419dbaca.png" alt="Group of diverse friends planning a trip together using a collaborative travel app">
+                    </div>
+                    <div class="solution-content">
+                        <h3>Social Travel Planning</h3>
+                        <p>Facilitate group travel with tools that make it easy to plan, book, and share experiences with friends.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trends Section -->
+    <section id="trends" class="trends">
+        <div class="container">
+            <div class="section-title">
+                <h2>Emerging Tourism Trends</h2>
+                <p>Stay ahead of the curve with these innovative travel trends that are shaping the future of tourism</p>
+            </div>
+            
+            <div class="trends-container">
+                <!-- Trend 1 -->
+                <div class="trend-card">
+                    <div class="trend-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Friendtrips & Group Travel</h3>
+                    <p>Social travel experiences that help travelers connect and explore destinations together.</p>
+                </div>
+                
+                <!-- Trend 2 -->
+                <div class="trend-card">
+                    <div class="trend-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Skillcation Experiences</h3>
+                    <p>Travel combined with learning opportunities like cooking classes, art workshops, and cultural immersion.</p>
+                </div>
+                
+                <!-- Trend 3 -->
+                <div class="trend-card">
+                    <div class="trend-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Bleisure Travel</h3>
+                    <p>Combining business trips with leisure activities for a more balanced travel experience.</p>
+                </div>
+                
+                <!-- Trend 4 -->
+                <div class="trend-card">
+                    <div class="trend-icon">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <h3>Noctourism & Astrotourism</h3>
+                    <p>Night-time experiences including stargazing, moonlight tours, and nocturnal wildlife observation.</p>
+                </div>
+                
+                <!-- Trend 5 -->
+                <div class="trend-card">
+                    <div class="trend-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Sustainable Tourism</h3>
+                    <p>Eco-friendly travel options that minimize environmental impact and support local communities.</p>
+                </div>
+                
+                <!-- Trend 6 -->
+                <div class="trend-card">
+                    <div class="trend-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Wellness Retreats</h3>
+                    <p>Travel focused on health, relaxation, and personal well-being through specialized retreats and activities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Transform Your Tourism Business?</h2>
+            <p>Join hundreds of tourism professionals who are already implementing these innovative solutions to boost their business and create memorable experiences for their customers.</p>
+            <a href="#contact" class="btn">Get Started Today</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>TourismBoost</h3>
+                    <p>Innovative solutions for the modern tourism industry.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Solutions</h3>
+                    <ul>
+                        <li><a href="#">Dynamic Pricing</a></li>
+                        <li><a href="#">Virtual Tours</a></li>
+                        <li><a href="#">AI Assistants</a></li>
+                        <li><a href="#">Gamification</a></li>
+                        <li><a href="#">Safety Systems</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Team</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Tourism Street, Travel City</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@tourismboost.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2023 TourismBoost. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.querySelector('.menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                }
+            });
+        });
+        
+        // Simple animation on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe solution cards and trend cards
+        document.querySelectorAll('.solution-card, .trend-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
