@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+    <meta charset="'utf-8">
+    <meta class="viewpoint" content="width=device-width ,initial-scale=100">
+    <head>
+        <title>Ca practice</title>
+        <link rel="icon" href="images.jpg" type="jpg/png">
+        <style>
+            body{ background-color: lightgrey;
+                color: blue;
+            }
+            .form{
+                background-color: black;
+                padding: 20px;
+            }
+            .main{
+
+                background-color: lightgrey;
+            }
+
+            
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <table border="9px">
+                <tr>
+                    <th>NAME</th>
+                    <TH colspan="2">CONTACT</TH>
+                    <th>Class</th>
+                </tr>
+                <tr>
+                    <td>Ashish</td>
+                    <td>9896919399</td>
+                    <td>9896919399</td>
+                    <td rowspan="2" >1</td>
+                </tr>
+                 <tr>
+                    <td>Ashish</td>
+                    <td>9896919399</td>
+                    <td>9896919399</td>
+                   
+                </tr> <tr>
+                    <td>Ashish</td>
+                    <td>9896919399</td>
+                    <td>9896919399</td>
+                    <td rowspan="4">2</td>
+                </tr> <tr>
+                    <td>Ashish</td>
+                    <td>9896919399</td>
+                    <td>9896919399</td>
+                    
+                </tr>
+            </table>
+        </div>
+        <div class="form">
+            <form action="submit.php" method="post">
+                <fieldset>
+                    <legend>Student information</legend>
+                <lable for="username">username</lable>
+                <input type="text" name="text"><br><br>
+                <label for="PASSWORD">PASSWORD</label>
+                <input type="password" name="password"><br>
+                <label for="email">Email</label>
+                <input type="email" name="email">
+                <br><br><hr>
+                <label for="select fav lang">Select fav lang</label><br>
+                <input type="radio"name='fav lang' id="lan1" value="python">
+                <label for="lan1">python</label>
+                <input type="radio"name='fav lang' id="lan3" value="html">
+                <label for="lan3">Html</label>
+                <input type="radio"name='fav lang' id="lan2" value="C">
+                <label for="lan2">C</label><br><hr>
+
+                <label for='Select skill'><em><b>Skills</b></em></label><br>
+                <input type="checkbox" name="skill" id="s1" value="reading">
+                <label for="s1" >reading</label><br>
+                <input type="checkbox" name="skill" id="s1" value="dancing">
+                <label for="s2" >dancing</label><Br>
+                <input type="checkbox" name="skill" id="s3" value="singing">
+                <label for="s3" >singing</label><br>
+                <label for="Select Class"><u><i><b>CLASS</b></i></u></label><br>
+                
+                <Select id="Class">
+                    <option value="Select Class">
+                        Select Class
+                    </option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </Select>
+                <ol type="">
+                    <li><INSERT>KUMAR</INSERT>ASHISH</li>
+                    <LI><tt>ANSH </tt>ANSH</LI>
+                </ol>
+                <ul >
+                    <li><a href='www.google.com' ><u><b><i>google</i></b></a></li>
+                    <li><a href='www.instagram.com'>instagram </a></li>
+                    <li><img src='images.jpg' alt="not found" ></li>
+                    <li><video height="400px" width="400px" controls >
+                        <source src="5377268-uhd_2160_3840_25fps.mp4" type="video/mp4">
+                    </video></li>
+<li></li>     <video src='5377268-uhd_2160_3840_25fps.mp4'height='400 px'width='100 px' class="mp4"controls ></video></li>
+               </ul> <hr><br>
+               <audio src="WhatsApp Audio 2025-09-19 at 10.52.49 PM.mpeg" class="mp3" controls></audio>
+               <embed src="5377268-uhd_2160_3840_25fps.mp4" class="mp4">
+                <embed src="rptStudentVirtualIDCardPrint.pdf"><BR>
+                    <INPUT type="submit" value="submit">
+                </fieldset>
+            </form>
+        </div>
+    </body>
+</html>
