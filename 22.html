@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>java script</title>
+    </head>
+
+    <script>
+        var nam='2'
+        var num=2
+        var num1=3
+        var sum=num+num1
+        var sub=num1-num
+        var mul=num*num1
+        var div=num1/num
+        var num2=4
+        num2+=3
+        var num3='abc'
+        num3+='def'
+        var num4='7'
+        var status=(4>3)?"true":"false"
+        
+        /*
+         let num5=10
+         let num5=12
+         console.log(num5) it will give error because let variable cant be re declared
+        */
+        
+        let num5=10
+        num5=12
+        console.log(num5)// it will not give error because we are not re declaring it
+        
+        /* 
+        const num6=5
+        num6=6
+        console.log(num6) // it will give error because const variable cant be re assigned 
+        */
+        
+        /*
+        const num6=5
+        console.log(num6)
+        console.log(num7) // it will give error because const variable cant be re assigned
+        */
+        
+        console.log(status)
+        console.log(typeof('this is my new num '+ num))
+        console.log('this is my new num '+" "+ num)
+        console.log(!(3>4))
+        console.log(num>=num1)
+        console.log(num<=num1)
+        console.log(num2==num4)
+        console.log(num2===num4)
+        console.log(num2!==num4)
+        console.log(num2)
+        console.log(num3)
+        console.log(typeof nam)
+        console.log(sum)
+        console.log(sub)
+        console.log(mul)
+        console.log(div)
+    </script>
+    
+    <body>
+        <h1>This is about java script</h1>
+        <a href="javascript.js" target="_blank">open javascript.js</a>
+        <p>this is document.write example</p>
+        <button onclick="document.write('this is my new para ,when click on me it will remove the previous paragraph')">click me</button>
+    </body>
+</html>

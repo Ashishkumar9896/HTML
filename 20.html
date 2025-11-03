@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        .grid{
+            display: grid;
+            grid-template-areas: "header header header header header"
+ 
+                                "navigation navigation navigation navigation navigation"
+                                 "sidebar main_content main_content main_content main_content"
+                                " footer footer footer footer footer";
+
+        }
+        .items{
+            border: 2px solid black;
+            padding: 20px;
+            text-align: center;
+            font-size: 20px;
+        }
+        #f1{
+            grid-area: header;
+            background-color: lightblue;
+        }
+        #f2{
+            grid-area: navigation;
+            background-color: lightgreen;
+        }   
+        #f3{
+            grid-area: main_content;
+            background-color: lightcoral;
+        }
+        #f4{
+            grid-area: sidebar;
+            background-color: lightgoldenrodyellow;
+        }
+        #f5{
+            grid-area: footer;
+            background-color: lightgray;
+        }
+
+    </style>
+    <BODY>
+    <div class="grid">
+        <div class="items" id ='f1'>
+            Header        </div>
+        <div class="items" id ='f2'>
+            navigation</div>
+        <div class="items" id ='f3'>
+            main content
+        </div>
+        <div class="items" id ='f4'>
+            Hello</div>
+            <div class="items" id ='f5'>
+                footer</div>
+    </div>
+    </BODY>
+            
+</html>

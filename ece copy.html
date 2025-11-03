@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicular Emissions and Their Effects on Respiratory Health in Delhi</title>
+    <style>
+        /* CSS Styling */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        nav {
+            background-color: #34495e;
+            padding: 10px;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav ul li a:hover {
+            color: #3498db;
+        }
+        main {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        section {
+            margin-bottom: 40px;
+            display: none; /* Hidden by default, shown via JS */
+        }
+        section.active {
+            display: block;
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .stats {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .interactive {
+            text-align: center;
+            margin: 20px 0;
+        }
+        #pollutionSlider {
+            width: 80%;
+            margin: 10px 0;
+        }
+        #aqiDisplay {
+            font-size: 1.5em;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+            main {
+                margin: 10px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Vehicular Emissions and Their Effects on Respiratory Health in Delhi</h1>
+        <p>An Educational Overview of Air Pollution's Impact</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#" onclick="showSection('intro')">Introduction</a></li>
+            <li><a href="#" onclick="showSection('emissions')">Vehicular Emissions</a></li>
+            <li><a href="#" onclick="showSection('effects')">Health Effects</a></li>
+            <li><a href="#" onclick="showSection('stats')">Statistics</a></li>
+            <li><a href="#" onclick="showSection('mitigation')">Mitigation</a></li>
+            <li><a href="#" onclick="showSection('conclusion')">Conclusion</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="intro" class="active">
+            <h2>Introduction</h2>
+            <p>Delhi, the capital city of India, is notorious for its severe air pollution problems. Vehicular emissions are one of the primary contributors to this crisis, releasing harmful pollutants into the atmosphere. These pollutants not only degrade air quality but also pose significant risks to public health, particularly respiratory health. This webpage explores the sources of vehicular emissions, their effects on the lungs and breathing, and potential solutions.</p>
+            <p>With over 10 million vehicles on Delhi's roads, the reliance on fossil fuel-based transport exacerbates the issue, especially during winter months when smog blankets the city.</p>
+        </section>
+
+        <section id="emissions">
+            <h2>Vehicular Emissions</h2>
+            <p>Vehicles in Delhi emit a cocktail of pollutants, including:</p>
+            <ul>
+                <li><strong>Particulate Matter (PM2.5 and PM10):</strong> Fine particles that can penetrate deep into the lungs.</li>
+                <li><strong>Nitrogen Oxides (NOx):</strong> Gases that contribute to smog formation and acid rain.</li>
+                <li><strong>Carbon Monoxide (CO):</strong> A colorless gas that reduces oxygen delivery in the blood.</li>
+                <li><strong>Volatile Organic Compounds (VOCs):</strong> Hydrocarbons that react to form ground-level ozone.</li>
+            </ul>
+            <p>Two-wheelers, cars, trucks, and buses are major sources, with diesel vehicles being particularly polluting. Traffic congestion worsens the situation by trapping emissions close to ground level.</p>
+        </section>
+
+        <section id="effects">
+            <h2>Effects on Respiratory Health</h2>
+            <p>Exposure to vehicular emissions can lead to a range of respiratory issues:</p>
+            <ul>
+                <li><strong>Short-term Effects:</strong> Coughing, wheezing, shortness of breath, and irritation of the airways.</li>
+                <li><strong>Long-term Effects:</strong> Chronic conditions like asthma, bronchitis, chronic obstructive pulmonary disease (COPD), and even lung cancer.</li>
+                <li><strong>Vulnerable Groups:</strong> Children, the elderly, and those with pre-existing conditions are at higher risk. In Delhi, schoolchildren often experience increased asthma attacks during high-pollution days.</li>
+            </ul>
+            <p>PM2.5 particles, smaller than 2.5 micrometers, can enter the bloodstream via the lungs, causing systemic inflammation and cardiovascular issues alongside respiratory problems.</p>
+        </section>
+
+        <section id="stats">
+            <h2>Statistics in Delhi</h2>
+            <div class="stats">
+                <p><strong>Air Quality Index (AQI):</strong> Delhi's average annual AQI often exceeds 300 (hazardous level), with vehicular emissions contributing ~30-40% of PM2.5.</p>
+                <p><strong>Health Impact:</strong> According to a 2022 study by the Centre for Science and Environment (CSE), air pollution causes over 2 million premature deaths annually in India, with respiratory diseases accounting for a significant portion in Delhi.</p>
+                <p><strong>Vehicle Growth:</strong> Delhi's vehicle population grew by 7% annually, leading to a 50% rise in emissions from 2015-2020.</p>
+                <p><strong>Hospital Admissions:</strong> During winter smog seasons, respiratory-related hospital visits increase by 20-30%.</p>
+            </div>
+            <div class="interactive">
+                <h3>Interactive AQI Simulator</h3>
+                <p>Slide to see estimated health risks based on AQI levels (simplified model).</p>
+                <input type="range" id="pollutionSlider" min="0" max="500" value="100" oninput="updateAQI()">
+                <p>Current AQI: <span id="aqiDisplay">100 (Moderate)</span></p>
+                <div id="riskDisplay">Low risk for healthy individuals.</div>
+            </div>
+        </section>
+
+        <section id="mitigation">
+            <h2>Mitigation Strategies</h2>
+            <p>To combat vehicular emissions and protect respiratory health:</p>
+            <ul>
+                <li><strong>Promote Public Transport:</strong> Expand metro and bus networks to reduce private vehicle use.</li>
+                <li><strong>Electric Vehicles (EVs):</strong> Incentives for EVs, like subsidies and charging infrastructure, can cut emissions by up to 50%.</li>
+                <li><strong>Regulations:</strong> Stricter emission norms (e.g., BS-VI standards) and odd-even vehicle schemes during peak pollution.</li>
+                <li><strong>Individual Actions:</strong> Use carpooling, cycle, or walk; wear N95 masks on high AQI days; support tree-planting initiatives.</li>
+            </ul>
+            <p>Government efforts like the National Clean Air Programme aim to reduce PM levels by 20-30% by 2024, but sustained action is needed.</p>
+        </section>
+
+        <section id="conclusion">
+            <h2>Conclusion</h2>
+            <p>Vehicular emissions remain a critical threat to respiratory health in Delhi, but awareness and collective action can drive change. By reducing emissions and improving air quality, we can safeguard the lungs of millions. Stay informed, advocate for cleaner air, and contribute to a healthier Delhi.</p>
+            <p>For more resources, visit the Central Pollution Control Board (CPCB) website.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Educational Webpage on Delhi Air Pollution. For informational purposes only.</p>
+    </footer>
+
+    <script>
+        // JavaScript for Interactivity
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach(sec => sec.classList.remove('active'));
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update active nav link (optional enhancement)
+            const links = document.querySelectorAll('nav a');
+            links.forEach(link => link.style.color = 'white');
+            event.target.style.color = '#3498db';
+        }
+
+        function updateAQI() {
+            const slider = document.getElementById('pollutionSlider');
+            const aqiValue = slider.value;
+            const display = document.getElementById('aqiDisplay');
+            const risk = document.getElementById('riskDisplay');
+            
+            display.textContent = aqiValue;
+            
+            let category, riskText;
+            if (aqiValue <= 50) {
+                category = '(Good)';
+                riskText = 'Minimal risk.';
+            } else if (aqiValue <= 100) {
+                category = '(Moderate)';
+                riskText = 'Low risk for healthy individuals.';
+            } else if (aqiValue <= 200) {
+                category = '(Unhealthy for Sensitive Groups)';
+                riskText = 'Moderate risk; sensitive groups should limit outdoor activities.';
+            } else if (aqiValue <= 300) {
+                category = '(Unhealthy)';
+                riskText = 'High risk; everyone should reduce exposure.';
+            } else {
+                category = '(Very Unhealthy/Hazardous)';
+                riskText = 'Severe risk; stay indoors and seek medical advice if symptomatic.';
+            }
+            
+            display.innerHTML = `${aqiValue} ${category}`;
+            risk.textContent = riskText;
+            
+            // Color code the display based on AQI
+            if (aqiValue > 200) {
+                display.style.color = '#e74c3c'; // Red
+            } else if (aqiValue > 100) {
+                display.style.color = '#f39c12'; // Orange
+            } else {
+                display.style.color = '#27ae60'; // Green
+            }
+        }
+
+        // Initialize slider on load
+        updateAQI();
+    </script>
+</body>
+</html>

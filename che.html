@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicular Emissions and Respiratory Health in Delhi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Neutrals -->
+    <!-- Application Structure Plan: The application is structured as a single-page dashboard with four thematic sections: Overview, Emission Sources, Health Impacts, and Solutions. A sticky top navigation bar allows users to jump between these sections, enabling non-linear exploration of the report's content. This structure was chosen over a linear format to empower users to directly access the information most relevant to them. The 'Overview' acts as a high-impact landing zone. 'Emission Sources' allows data deep-dives. 'Health Impacts' visually correlates pollution and health data. 'Solutions' provides actionable information. This task-oriented design enhances usability and comprehension by breaking down a complex topic into digestible, interconnected modules. -->
+    <!-- Visualization & Content Choices: 
+        1. Overview - AQI Gauge: Report Info: Average AQI in Delhi. Goal: Inform/Impact. Viz: Donut Chart (Chart.js). Interaction: Visual color-coding. Justification: A gauge is an instantly recognizable and impactful way to present a single, critical metric. Library: Chart.js.
+        2. Overview - Key Stats: Report Info: Vehicle numbers, pollution-related deaths. Goal: Inform. Viz: Stat Cards (HTML/Tailwind). Interaction: Hover effects. Justification: Cards isolate key numbers for quick absorption.
+        3. Emission Sources - Pollutant Contribution: Report Info: Breakdown of PM2.5, NOx by vehicle type. Goal: Compare/Organize. Viz: Stacked Bar Chart (Chart.js). Interaction: Tooltips on hover. Justification: A stacked bar chart is ideal for showing part-to-whole relationships across multiple categories simultaneously. Library: Chart.js.
+        4. Emission Sources - Vehicle Type Contribution: Report Info: Overall pollution share by vehicle type. Goal: Compare. Viz: Donut Chart (Chart.js). Interaction: Buttons to filter data between PM2.5 and NOx. Justification: A donut chart clearly shows proportional contributions. Interactive filters allow for a deeper, user-driven comparison. Library: Chart.js.
+        5. Health Impacts - Pollution vs. Health Cases: Report Info: Trend of PM2.5 levels and respiratory cases over time. Goal: Show Change/Relationships. Viz: Dual-axis Line Chart (Chart.js). Interaction: Tooltips to see data for specific months. Justification: A dual-axis line chart is the most effective way to visualize the correlation between two different data series over time. Library: Chart.js.
+        6. Health Impacts - Disease Info: Report Info: Details on specific respiratory illnesses. Goal: Inform. Viz: Informational Cards (HTML/Tailwind). Interaction: None. Justification: Cards provide structured, scannable information on complex topics.
+        7. Solutions - Mitigation Strategies: Report Info: Government policies and initiatives. Goal: Inform. Viz: Grid of Solution Cards (HTML/Tailwind). Interaction: Subtle hover animations. Justification: A grid layout presents multiple solutions in an organized, non-hierarchical, and easily browsable manner.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #4A4A4A;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .nav-link {
+            transition: color 0.3s ease, border-bottom-color 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #D97706; /* amber-600 */
+            border-bottom-color: #D97706;
+        }
+        .stat-card {
+            background-color: #FFFFFF;
+            border: 1px solid #F3F4F6; /* gray-100 */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-amber-700">Delhi's Air & Health</h1>
+            <div class="hidden md:flex space-x-8">
+                <a href="#overview" class="nav-link text-gray-600 font-medium pb-1">Overview</a>
+                <a href="#emissions" class="nav-link text-gray-600 font-medium pb-1">Emission Sources</a>
+                <a href="#health" class="nav-link text-gray-600 font-medium pb-1">Health Impacts</a>
+                <a href="#solutions" class="nav-link text-gray-600 font-medium pb-1">Solutions</a>
+            </div>
+            <div class="md:hidden">
+                <select id="mobile-nav" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block w-full p-2.5">
+                    <option value="#overview">Overview</option>
+                    <option value="#emissions">Emissions</option>
+                    <option value="#health">Health</option>
+                    <option value="#solutions">Solutions</option>
+                </select>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-8 md:py-12">
+
+        <section id="overview" class="mb-16 md:mb-24 text-center scroll-mt-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">The Air We Breathe</h2>
+            <p class="max-w-3xl mx-auto text-gray-600 mb-10 md:mb-12">
+                This dashboard provides an interactive analysis of vehicular emissions in Delhi and their profound effects on the respiratory health of its citizens. We explore the sources of pollution, visualize the direct health consequences, and examine the ongoing efforts to mitigate this critical urban challenge.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-center">
+                <div class="md:col-span-1">
+                    <div class="chart-container h-64 md:h-auto">
+                        <canvas id="aqiChart"></canvas>
+                    </div>
+                    <p id="aqiText" class="text-center mt-2 font-semibold text-xl"></p>
+                </div>
+                <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="stat-card p-6 rounded-lg shadow-md text-left">
+                        <div class="text-3xl text-amber-600 mb-2">🚗</div>
+                        <h3 class="text-lg font-semibold text-gray-800">11+ Million Vehicles</h3>
+                        <p class="text-gray-500 mt-1">Registered vehicles on Delhi's roads, a primary contributor to air pollution.</p>
+                    </div>
+                    <div class="stat-card p-6 rounded-lg shadow-md text-left">
+                        <div class="text-3xl text-amber-600 mb-2">💨</div>
+                        <h3 class="text-lg font-semibold text-gray-800">80% of NOx Emissions</h3>
+                        <p class="text-gray-500 mt-1">Vehicles are the largest source of Nitrogen Oxides in the city's air.</p>
+                    </div>
+                    <div class="stat-card p-6 rounded-lg shadow-md text-left">
+                        <div class="text-3xl text-amber-600 mb-2">PM₂.₅</div>
+                        <h3 class="text-lg font-semibold text-gray-800">Major PM2.5 Contributor</h3>
+                        <p class="text-gray-500 mt-1">Vehicular exhaust is a significant source of fine particulate matter, the most dangerous pollutant for health.</p>
+                    </div>
+                    <div class="stat-card p-6 rounded-lg shadow-md text-left">
+                         <div class="text-3xl text-amber-600 mb-2">💔</div>
+                        <h3 class="text-lg font-semibold text-gray-800">17,500+ Deaths Annually</h3>
+                        <p class="text-gray-500 mt-1">Estimated premature deaths in Delhi attributed to air pollution each year.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="emissions" class="mb-16 md:mb-24 scroll-mt-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 text-center">Dissecting the Emissions</h2>
+            <p class="max-w-3xl mx-auto text-gray-600 mb-10 md:mb-12 text-center">
+                Not all vehicles pollute equally. This section breaks down the total emissions by vehicle type and pollutant, revealing which categories are the most significant contributors to Delhi's air quality crisis. Use the interactive charts to explore the data.
+            </p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4 text-center">Pollutant Share by Vehicle Type</h3>
+                    <div class="chart-container">
+                        <canvas id="pollutantShareChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-1 text-center">Vehicle Contribution to Key Pollutants</h3>
+                     <div class="flex justify-center my-4 space-x-2">
+                        <button id="pm25Btn" class="px-4 py-2 text-sm font-medium text-white bg-amber-600 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">PM₂.₅</button>
+                        <button id="noxBtn" class="px-4 py-2 text-sm font-medium text-amber-700 bg-amber-100 rounded-md shadow-sm hover:bg-amber-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">NOx</button>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="vehicleContributionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="health" class="mb-16 md:mb-24 scroll-mt-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 text-center">The Human Cost</h2>
+             <p class="max-w-3xl mx-auto text-gray-600 mb-10 md:mb-12 text-center">
+                The invisible pollutants in the air have visible and severe consequences for public health. This section visualizes the alarming correlation between rising pollution levels and the surge in respiratory illnesses, highlighting the direct impact on the well-being of Delhi's residents.
+            </p>
+            <div class="bg-white p-4 md:p-6 rounded-lg shadow-lg mb-12">
+                 <h3 class="text-xl font-semibold text-gray-700 mb-4 text-center">PM₂.₅ Levels vs. Respiratory Cases</h3>
+                <div class="chart-container h-80 md:h-96">
+                    <canvas id="healthImpactChart"></canvas>
+                </div>
+            </div>
+             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="stat-card p-6 rounded-lg">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Asthma</h4>
+                    <p class="text-gray-600">Chronic inflammation of the airways. High pollution levels trigger severe asthma attacks and are linked to the onset of the disease, particularly in children.</p>
+                </div>
+                <div class="stat-card p-6 rounded-lg">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2">COPD</h4>
+                    <p class="text-gray-600">Chronic Obstructive Pulmonary Disease. Long-term exposure to vehicular pollutants is a major risk factor for developing this progressive lung disease.</p>
+                </div>
+                <div class="stat-card p-6 rounded-lg">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Bronchitis</h4>
+                    <p class="text-gray-600">Inflammation of the bronchial tubes. Particulate matter and other pollutants irritate the airways, leading to acute and chronic bronchitis.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="solutions" class="scroll-mt-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 text-center">Forging a Path to Cleaner Air</h2>
+            <p class="max-w-3xl mx-auto text-gray-600 mb-10 md:mb-12 text-center">
+                Tackling Delhi's air pollution requires a multi-faceted approach involving policy changes, technological advancements, and public participation. Here are some of the key strategies being implemented to reduce vehicular emissions and improve public health.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <div class="stat-card p-6 rounded-lg">
+                    <div class="text-3xl text-amber-600 mb-3">⚡️</div>
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Electric Vehicle (EV) Policy</h4>
+                    <p class="text-gray-600">Promoting the adoption of electric vehicles through subsidies, tax waivers, and the development of a robust charging infrastructure to achieve zero tailpipe emissions.</p>
+                </div>
+                <div class="stat-card p-6 rounded-lg">
+                    <div class="text-3xl text-amber-600 mb-3">🚌</div>
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Public Transport Augmentation</h4>
+                    <p class="text-gray-600">Expanding the Delhi Metro network and increasing the fleet of low-emission CNG and electric buses to provide viable alternatives to private vehicles.</p>
+                </div>
+                <div class="stat-card p-6 rounded-lg">
+                    <div class="text-3xl text-amber-600 mb-3">⛽️</div>
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Leap to BS-VI Norms</h4>
+                    <p class="text-gray-600">Delhi has transitioned to stricter Bharat Stage VI emission standards for fuel and vehicles, significantly reducing permissible sulphur and nitrogen oxide levels.</p>
+                </div>
+                <div class="stat-card p-6 rounded-lg">
+                     <div class="text-3xl text-amber-600 mb-3">📅</div>
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Odd-Even Scheme</h4>
+                    <p class="text-gray-600">A temporary road rationing measure implemented during periods of extreme pollution to reduce the number of private cars on the road by half.</p>
+                </div>
+                <div class="stat-card p-6 rounded-lg">
+                     <div class="text-3xl text-amber-600 mb-3">🚶‍♀️</div>
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Non-Motorised Transport</h4>
+                    <p class="text-gray-600">Developing dedicated cycling tracks and pedestrian-friendly infrastructure to encourage walking and cycling for short-distance travel.</p>
+                </div>
+                <div class="stat-card p-6 rounded-lg">
+                    <div class="text-3xl text-amber-600 mb-3">🍃</div>
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Green Corridors & Tree Planting</h4>
+                    <p class="text-gray-600">Increasing green cover along roadsides and in open spaces helps to naturally filter pollutants and reduce ambient dust levels.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white border-t mt-12">
+        <div class="container mx-auto px-6 py-4 text-center text-gray-500">
+            <p>&copy; 2024 Delhi Environmental Data Project. An interactive summary for public awareness.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chartLabelColor = '#4A4A4A';
+            const chartGridColor = '#E5E7EB';
+            const aqiValue = 358; 
+
+            const getAqiDetails = (aqi) => {
+                if (aqi <= 50) return { category: 'Good', color: '#4ADE80', textColor: 'text-green-500' };
+                if (aqi <= 100) return { category: 'Satisfactory', color: '#A3E635', textColor: 'text-lime-500' };
+                if (aqi <= 200) return { category: 'Moderate', color: '#FACC15', textColor: 'text-yellow-500' };
+                if (aqi <= 300) return { category: 'Poor', color: '#FB923C', textColor: 'text-orange-400' };
+                if (aqi <= 400) return { category: 'Very Poor', color: '#F87171', textColor: 'text-red-500' };
+                return { category: 'Severe', color: '#DC2626', textColor: 'text-red-700' };
+            };
+            
+            const aqiDetails = getAqiDetails(aqiValue);
+            document.getElementById('aqiText').textContent = `${aqiValue} - ${aqiDetails.category}`;
+            document.getElementById('aqiText').className += ` ${aqiDetails.textColor}`;
+            
+            const aqiCtx = document.getElementById('aqiChart').getContext('2d');
+            new Chart(aqiCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['AQI Level', 'Remaining'],
+                    datasets: [{
+                        data: [aqiValue, 500 - aqiValue],
+                        backgroundColor: [aqiDetails.color, '#F3F4F6'],
+                        borderColor: ['#FFFFFF'],
+                        borderWidth: 2,
+                        circumference: 180,
+                        rotation: 270,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { enabled: false }
+                    },
+                    cutout: '70%',
+                }
+            });
+
+            const pollutantData = {
+                labels: ['Two-Wheelers', 'Cars', 'Buses', 'Trucks', 'Three-Wheelers'],
+                datasets: [
+                    {
+                        label: 'PM₂.₅',
+                        data: [20, 30, 15, 25, 10],
+                        backgroundColor: '#F59E0B', // amber-500
+                    },
+                    {
+                        label: 'NOx',
+                        data: [15, 40, 20, 20, 5],
+                        backgroundColor: '#FBBF24', // amber-400
+                    },
+                    {
+                        label: 'CO',
+                        data: [35, 25, 10, 15, 15],
+                        backgroundColor: '#FCD34D', // amber-300
+                    }
+                ]
+            };
+            const pollutantCtx = document.getElementById('pollutantShareChart').getContext('2d');
+            new Chart(pollutantCtx, {
+                type: 'bar',
+                data: pollutantData,
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            stacked: true,
+                            grid: { color: chartGridColor },
+                            ticks: { color: chartLabelColor }
+                        },
+                        y: {
+                            stacked: true,
+                            grid: { display: false },
+                            ticks: { color: chartLabelColor }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { color: chartLabelColor }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.x !== null) {
+                                        label += context.parsed.x + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            const vehicleContributionData = {
+                pm25: {
+                    labels: ['Trucks', 'Cars', 'Two-Wheelers', 'Buses', 'Others'],
+                    data: [41, 23, 15, 11, 10]
+                },
+                nox: {
+                    labels: ['Cars', 'Trucks', 'Buses', 'Two-Wheelers', 'Others'],
+                    data: [40, 25, 18, 12, 5]
+                }
+            };
+            const vehicleCtx = document.getElementById('vehicleContributionChart').getContext('2d');
+            const vehicleChart = new Chart(vehicleCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: vehicleContributionData.pm25.labels,
+                    datasets: [{
+                        data: vehicleContributionData.pm25.data,
+                        backgroundColor: ['#D97706', '#F59E0B', '#FBBF24', '#FCD34D', '#FEF3C7'],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { 
+                            position: 'bottom',
+                            labels: { color: chartLabelColor }
+                         },
+                        tooltip: {
+                             callbacks: {
+                                label: function(context) {
+                                    return `${context.label}: ${context.raw}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const pm25Btn = document.getElementById('pm25Btn');
+            const noxBtn = document.getElementById('noxBtn');
+
+            const updateVehicleChart = (pollutant) => {
+                const newData = vehicleContributionData[pollutant];
+                vehicleChart.data.labels = newData.labels;
+                vehicleChart.data.datasets[0].data = newData.data;
+                vehicleChart.update();
+
+                if (pollutant === 'pm25') {
+                    pm25Btn.classList.remove('bg-amber-100', 'text-amber-700', 'hover:bg-amber-200');
+                    pm25Btn.classList.add('bg-amber-600', 'text-white');
+                    noxBtn.classList.add('bg-amber-100', 'text-amber-700', 'hover:bg-amber-200');
+                    noxBtn.classList.remove('bg-amber-600', 'text-white');
+                } else {
+                    noxBtn.classList.remove('bg-amber-100', 'text-amber-700', 'hover:bg-amber-200');
+                    noxBtn.classList.add('bg-amber-600', 'text-white');
+                    pm25Btn.classList.add('bg-amber-100', 'text-amber-700', 'hover:bg-amber-200');
+                    pm25Btn.classList.remove('bg-amber-600', 'text-white');
+                }
+            };
+            pm25Btn.addEventListener('click', () => updateVehicleChart('pm25'));
+            noxBtn.addEventListener('click', () => updateVehicleChart('nox'));
+
+            const healthData = {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'PM₂.₅ Level (μg/m³)',
+                    data: [240, 180, 120, 80, 60, 50, 70, 80, 90, 180, 300, 350],
+                    borderColor: '#F87171', // red-400
+                    backgroundColor: 'rgba(248, 113, 113, 0.1)',
+                    yAxisID: 'yPM',
+                    tension: 0.3,
+                    fill: true,
+                }, {
+                    label: 'Respiratory Cases (in thousands)',
+                    data: [15, 12, 10, 8, 7, 6, 8, 9, 10, 18, 28, 32],
+                    borderColor: '#60A5FA', // blue-400
+                    backgroundColor: 'rgba(96, 165, 250, 0.1)',
+                    yAxisID: 'yCases',
+                    tension: 0.3,
+                    fill: true,
+                }]
+            };
+
+            const healthCtx = document.getElementById('healthImpactChart').getContext('2d');
+            new Chart(healthCtx, {
+                type: 'line',
+                data: healthData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: chartLabelColor }
+                        },
+                        yPM: {
+                            type: 'linear',
+                            position: 'left',
+                            title: {
+                                display: true,
+                                text: 'PM₂.₅ Level',
+                                color: chartLabelColor
+                            },
+                            grid: { color: chartGridColor },
+                            ticks: { color: chartLabelColor }
+                        },
+                        yCases: {
+                            type: 'linear',
+                            position: 'right',
+                            title: {
+                                display: true,
+                                text: 'Cases (thousands)',
+                                color: chartLabelColor
+                            },
+                            grid: { display: false },
+                            ticks: { color: chartLabelColor }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                             labels: { color: chartLabelColor }
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                        }
+                    }
+                }
+            });
+
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileNav = document.getElementById('mobile-nav');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.4
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('href').substring(1) === entry.target.id);
+                        });
+                        mobileNav.value = `#${entry.target.id}`;
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => observer.observe(section));
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+
+            mobileNav.addEventListener('change', (e) => {
+                document.querySelector(e.target.value).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>

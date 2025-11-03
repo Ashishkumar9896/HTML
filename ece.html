@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: Arduino-Based Voice-Controlled Appliance Controller</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8FAFC; /* Light Gray */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flow-arrow {
+            color: #087E8B;
+            font-size: 2rem;
+            line-height: 1;
+        }
+        .pro-con-card {
+            background-color: #f7f9fb;
+            border-left: 4px solid;
+            padding: 1rem;
+            border-radius: 0.25rem;
+        }
+        .pro-card {
+            border-color: #087E8B;
+        }
+        .con-card {
+            border-color: #FF5A5F;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#0B3954] mb-2">Arduino Voice-Controlled Appliances</h1>
+            <p class="text-lg md:text-xl text-gray-600">A Technical Synopsis on Bridging Voice Recognition and Home Automation</p>
+        </header>
+
+        <main class="space-y-12">
+            
+            <section id="introduction" class="text-center bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#087E8B] mb-4">A Convergence of Technologies</h2>
+                <p class="text-gray-700 max-w-4xl mx-auto leading-relaxed">This project stands at the intersection of two powerful historical trends: the century-long evolution of home automation and the decades of progress in voice recognition. By leveraging the power of modern smartphones and affordable microcontrollers, we can create an accessible system that transforms spoken commands into physical actions, making legacy appliances "smart" and enhancing daily life.</p>
+            </section>
+
+            <section id="market-applications" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                    <h2 class="text-3xl font-bold mb-4 text-[#0B3954]">Market Potential: A Booming Industry</h2>
+                    <p class="text-gray-700 mb-6">The DIY home automation market is experiencing explosive growth, projected to expand nearly tenfold by 2032. This rapid expansion is driven by consumer demand for convenience, security, and energy efficiency, creating a highly saleable market for educational and hobbyist-focused kits like this project.</p>
+                    <div class="chart-container h-80">
+                        <canvas id="marketGrowthChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                    <h2 class="text-3xl font-bold mb-4 text-[#0B3954]">Core Applications: Beyond Convenience</h2>
+                    <p class="text-gray-700 mb-6">While convenient, the true impact of this technology lies in its ability to improve quality of life. The system provides crucial assistive benefits, enhancing independence for the elderly and individuals with disabilities, while also bolstering home safety and well-being.</p>
+                    <div class="chart-container h-80">
+                        <canvas id="applicationsChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="data-flow" class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-6 text-center text-[#087E8B]">End-to-End System Data Flow</h2>
+                <p class="text-center text-gray-700 max-w-3xl mx-auto mb-8">The system operates on a clear, sequential data path. The complex task of voice recognition is offloaded to the smartphone and the cloud, allowing the Arduino to function as a simple, reliable controller that translates text commands into electrical signals.</p>
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4 text-center">
+                    <div class="p-4 bg-blue-50 rounded-lg shadow w-full md:w-40"><h4 class="font-bold">1. Voice Capture</h4><p class="text-sm text-gray-600">(Phone Mic)</p></div>
+                    <div class="flow-arrow">&rarr;</div>
+                    <div class="p-4 bg-blue-50 rounded-lg shadow w-full md:w-40"><h4 class="font-bold">2. Speech-to-Text</h4><p class="text-sm text-gray-600">(Cloud AI)</p></div>
+                    <div class="flow-arrow">&rarr;</div>
+                    <div class="p-4 bg-blue-50 rounded-lg shadow w-full md:w-40"><h4 class="font-bold">3. Bluetooth Tx</h4><p class="text-sm text-gray-600">(Phone to Module)</p></div>
+                    <div class="flow-arrow">&rarr;</div>
+                    <div class="p-4 bg-red-50 rounded-lg shadow w-full md:w-40"><h4 class="font-bold">4. Serial Rx</h4><p class="text-sm text-gray-600">(Arduino)</p></div>
+                    <div class="flow-arrow">&rarr;</div>
+                    <div class="p-4 bg-red-50 rounded-lg shadow w-full md:w-40"><h4 class="font-bold">5. Logic Check</h4><p class="text-sm text-gray-600">(Arduino Code)</p></div>
+                    <div class="flow-arrow">&rarr;</div>
+                    <div class="p-4 bg-red-50 rounded-lg shadow w-full md:w-40"><h4 class="font-bold">6. Relay Actuation</h4><p class="text-sm text-gray-600">(Digital Signal)</p></div>
+                    <div class="flow-arrow">&rarr;</div>
+                    <div class="p-4 bg-red-50 rounded-lg shadow w-full md:w-40"><h4 class="font-bold">7. Appliance On/Off</h4><p class="text-sm text-gray-600">(AC Circuit)</p></div>
+                </div>
+            </section>
+
+            <section id="architecture-choice" class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-6 text-center text-[#087E8B]">Architectural Choice: A Key Trade-Off</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-3 text-center md:text-left text-[#0B3954]">Smartphone-Based (This Project)</h3>
+                        <div class="space-y-4">
+                            <div class="pro-con-card pro-card"><strong>Pro:</strong> High accuracy using cloud-based AI to understand natural language.</div>
+                            <div class="pro-con-card pro-card"><strong>Pro:</strong> Low cost, as it leverages the user's existing smartphone hardware.</div>
+                            <div class="pro-con-card con-card"><strong>Con:</strong> Requires an active internet connection to function.</div>
+                            <div class="pro-con-card con-card"><strong>Con:</strong> Dependent on the phone being present and running the app.</div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-3 text-center md:text-left text-[#0B3954]">Dedicated Modules (Alternative)</h3>
+                         <div class="space-y-4">
+                            <div class="pro-con-card pro-card"><strong>Pro:</strong> Functions entirely offline, ensuring privacy and low latency.</div>
+                            <div class="pro-con-card pro-card"><strong>Pro:</strong> Ideal for standalone, embedded applications.</div>
+                            <div class="pro-con-card con-card"><strong>Con:</strong> Limited vocabulary requires "training" specific command words.</div>
+                             <div class="pro-con-card con-card"><strong>Con:</strong> Less reliable in noisy environments or with different users.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="objectives" class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-4 text-center text-[#087E8B]">Primary Project Objectives</h2>
+                 <div class="max-w-2xl mx-auto">
+                    <ol class="list-decimal list-inside space-y-3 text-lg text-gray-700">
+                        <li>Design and build a functional, low-cost prototype using an Arduino, Bluetooth module, and relay.</li>
+                        <li>Develop the necessary software, including the Arduino sketch and an Android user interface.</li>
+                        <li>Create a comprehensive technical document analyzing the project's design, applications, and market viability.</li>
+                    </ol>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const wrapLabels = (label) => {
+            const max = 16;
+            if (label.length <= max) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > max) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+        
+        const sharedChartOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            }
+        };
+
+        const marketGrowthData = {
+            labels: ['2023', '2025', '2027', '2029', '2032'],
+            datasets: [{
+                label: 'Global DIY Home Automation Market (USD Billions)',
+                data: [50.46, 86.5, 148.2, 254.1, 508.78],
+                fill: true,
+                borderColor: '#087E8B',
+                backgroundColor: 'rgba(8, 126, 139, 0.2)',
+                tension: 0.1
+            }]
+        };
+        
+        const applicationsData = {
+            labels: ['Accessibility & Independence', 'Safety & Security', 'Health & Well-being', 'General Convenience'],
+            datasets: [{
+                label: 'Application Impact',
+                data: [40, 25, 15, 20],
+                backgroundColor: ['#0B3954', '#087E8B', '#BFD7EA', '#FF5A5F'],
+                hoverOffset: 4
+            }]
+        };
+
+        window.onload = function() {
+            const marketGrowthCtx = document.getElementById('marketGrowthChart').getContext('2d');
+            new Chart(marketGrowthCtx, {
+                type: 'line',
+                data: marketGrowthData,
+                options: {
+                    ...sharedChartOptions,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value + 'B';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const applicationsCtx = document.getElementById('applicationsChart').getContext('2d');
+            new Chart(applicationsCtx, {
+                type: 'doughnut',
+                data: applicationsData,
+                options: { ...sharedChartOptions, plugins: { ...sharedChartOptions.plugins, legend: { position: 'bottom' } } }
+            });
+        };
+    </script>
+</body>
+</html>
+
