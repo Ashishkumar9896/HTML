@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOM Manipulation with JavaScript</title> 
+
+    </head>
+    <BODY>
+        <P ID = "demo">Hello</P>
+        <p class="demo1">ABC</p>
+        <p class="demo1">DEF</p>
+        <p class="demo2">GHI</p>
+        <p class="demo2">JKL</p>
+        <script>
+            let para = document.getElementById("demo");
+            para.style.color = "blue";
+            para.innerText="Welcome to JavaScript DOM Manipulation";
+            let para1 = document.getElementsByClassName("demo1");
+            //para1.style.color="green";  This line will cause an error because getElementsByClassName returns a collection
+            for(let i=0; i<para1.length; i++){
+                para1[i].style.color="red";
+            }
+            let para2 = document.getElementsByClassName ("demo2");
+            for(let i=0; i<para2.length; i++){
+                para2[i].innerHTML="Paragraph " + (i+1);
+            }
+            let paras=document.getElementsByTagName("p");
+            for(let i=0; i<paras.length; i++){
+                paras[i].style.fontSize="20px";
+                paras[i].style.fontFamily="Arial, sans-serif";
+                paras[i].style.backgroundColor="lightgray";
+            }
+        </script>
+    </BODY>
+</html>
