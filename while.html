@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loop Variables Test</title>
+</head>
+<body>
+    <h3>Using let (current):</h3>
+    <script>
+        let i = 1;
+        while(i <= 3){
+            document.write("<p>Let: Paragraph " + i + "</p>");
+            i++;
+        }
+    </script>
+
+    <h3>Using var:</h3>
+    <script>
+        var j = 1;
+        while(j <= 3){
+            document.write("<p>Var: Paragraph " + j + "</p>");
+            j++;
+        }
+    </script>
+
+    <h3>Using const (this will break):</h3>
+    <script>
+        try {
+            const k = 1;
+            while(k <= 3){
+                document.write("<p>Const: Paragraph " + k + "</p>");
+                k++; // This line will cause an error
+            }
+        } catch(error) {
+            document.write("<p style='color: red;'>Error with const: " + error.message + "</p>");
+        }
+    </script>
+</body>
+</html>
