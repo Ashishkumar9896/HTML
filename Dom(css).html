@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>document</title>
+    <style>
+        .hello{
+            color:green;
+            font-size: 18px;
+            background-color: lightyellow;
+            padding: 10px;
+            border: 1px dashed black;
+            border-radius: 15px;
+        }
+       
+    </style>
+
+</head>
+<body>
+    <P id="demo">Hello this is example of dom css</P>
+    <p id="demo1"></p>
+
+    <button onclick="myfunction()">Click me</button>
+    <p id="demo2">This is another paragraph.</p>
+    <button onclick="myfunction1()">Add Class</button>
+    <p id="demo3">This is yet another paragraph.</p>
+    <button onclick="myfunction2()">Change Color</button><br>
+    <input type="text" id="demo4" ><br>
+
+    <button id="demo5">tryme</button>
+
+    <script>
+        document.getElementById('demo').style.cssText = "color: blue; font-size: 18px; font-family: Arial, sans-serif; background-color: lightyellow; padding: 10px; border: 1px solid black; border-radius: 5px;";
+        function myfunction(){
+            document.getElementById('demo1').style.cssText = "color: green; font-size: 16px; font-family: Verdana, sans-serif; background-color: lightblue; padding: 8px; border: 1px dashed black; border-radius: 5px;";
+            document.getElementById('demo1').innerText="This paragraph is styled using JavaScript when the button is clicked.";
+        }
+        function myfunction1(){
+            document.getElementById('demo2').style.color="red";
+        }
+        function myfunction2(){
+            document.getElementById('demo3').classList.add("hello");
+        }
+        {
+            document.getElementById('demo4').addEventListener("click", ()=>{
+                alert("Button clicked!");
+            })
+
+        }
+        document.getElementById('demo5').addEventListener("click", function(){
+            this.style.backgroundColor="yellow";
+            this.style.color="red";
+            this.style.fontSize="20px";
+            this.innerText="You clicked me!";
+        });
+    </script>
+</body>
+</html>
